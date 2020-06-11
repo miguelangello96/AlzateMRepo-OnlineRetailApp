@@ -27,12 +27,15 @@ public class CustomerService {
                 //uses constructor to create new customer object
                 Customer newCustomer = new Customer(firstName, lastName, email, password);
 
-                Thread addCustomerThread = new Thread(() -> {
+                /*Thread addCustomerThread = new Thread(() -> {
                     repo.addCustomer(newCustomer);
                     //System.out.println("Account created!");
 
                 });
                 addCustomerThread.start();
+                 */
+                //Moved add customer outside of the thread
+                repo.addCustomer(newCustomer);
                 success = true;
             } catch (Exception e){
                 //For now just have this plain message

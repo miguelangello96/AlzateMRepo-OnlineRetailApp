@@ -21,7 +21,10 @@ public class CustomerLogin implements IMenu {
 
             //you need to be able to access objects that have been created
             // then you need to see if they match the user input
+
+            // ##############
             //Once that is succesfull take them to customerMenu
+            // Smae for admin
 
 
 
