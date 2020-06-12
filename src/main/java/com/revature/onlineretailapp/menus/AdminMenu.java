@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class AdminMenu implements IMenu {
 
     private Scanner scanner = new Scanner(System.in);
+    private AdminNewAccount adminNewAccount = new AdminNewAccount();
 
 
     @Override
@@ -12,7 +13,7 @@ public class AdminMenu implements IMenu {
 
         String userInput;
 
-        System.out.println("You are in the admin menu.");
+        System.out.println("");
 
         do {
             System.out.println("Admin Menu");
@@ -28,6 +29,7 @@ public class AdminMenu implements IMenu {
             switch (userInput) {
                 case "0":
                     //Takes me to new admin
+                    adminNewAccount.start();
 
                     break;
 

@@ -23,6 +23,7 @@ public class ConnectionService {
             e.printStackTrace();
 
         }
+
     }
 
     public Connection getConnection() {
@@ -36,7 +37,9 @@ public class ConnectionService {
         try {
 
             connection.close();
+
         } catch (Exception e){
+            e.getMessage();
 
         }
 

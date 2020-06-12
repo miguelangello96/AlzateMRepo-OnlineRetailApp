@@ -5,10 +5,11 @@ import com.revature.onlineretailapp.menus.RetailMenuFactory;
 import com.revature.onlineretailapp.menus.StartingMenu;
 import com.revature.onlineretailapp.models.User;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String [] args){
+    public static void main(String [] args) throws SQLException {
 
 
         StartingMenu mainMenu = new StartingMenu();

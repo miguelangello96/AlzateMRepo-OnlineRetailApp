@@ -1,16 +1,17 @@
 package com.revature.onlineretailapp.service;
 
-import com.revature.onlineretailapp.dao.ICustomerRepo;
+import com.revature.onlineretailapp.dao.IUserRepo;
+import com.revature.onlineretailapp.models.Admin;
 import com.revature.onlineretailapp.models.Customer;
 
 import java.util.List;
 
-public class CustomerService {
+public class UserService {
 
     ValidationService inputValidation = new ValidationService();
-    ICustomerRepo repo;
+    IUserRepo repo;
 
-    public CustomerService(ICustomerRepo repo){
+    public UserService(IUserRepo repo){
         this.repo = repo;
     }
 
@@ -47,11 +48,39 @@ public class CustomerService {
 
     }
 
-    //This method will check to see if userinput matches an existing customer object
-    public void LoginVerification() {
+    public void createNewAdmin(){
+        boolean success = false;
+        do {
 
+            String firstName = inputValidation.getValidStringInput("Enter first name: ");
+            String lastName = inputValidation.getValidStringInput("Enter last name: ");
+            String email = inputValidation.getValidStringInput("Enter email address: ");
+            String password = inputValidation.getValidStringInput("Enter a password: ");
+
+            try {
+                //uses constructor to create new customer object
+                Admin newAdmin = new Admin(firstName, lastName, email, password);
+
+                /*Thread addCustomerThread = new Thread(() -> {
+                    repo.addCustomer(newCustomer);
+                    //System.out.println("Account created!");
+
+                });
+                addCustomerThread.start();
+                 */
+                //Moved add customer outside of the thread
+                repo.addAdmin(newAdmin);
+                success = true;
+            } catch (Exception e){
+                //For now just have this plain message
+                System.out.println("Failed to create account");
+            }
+
+
+        }while(!success); //
 
     }
+
     // Consider making this method be in the admin class
     public void getCustomers() {
         List<Customer> retrievedCustomers = repo.getAllCustomers();
@@ -59,4 +88,6 @@ public class CustomerService {
             System.out.println(customer);
         }
     }
+
+
 }

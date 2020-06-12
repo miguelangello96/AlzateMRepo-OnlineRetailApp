@@ -1,16 +1,13 @@
 package com.revature.onlineretailapp.dao;
 
+import com.revature.onlineretailapp.models.Admin;
 import com.revature.onlineretailapp.models.Customer;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerRepoFile implements ICustomerRepo {
-
+public class UserRepoFile implements IUserRepo {
     String filePath = "src/main/resources/Customer.txt";
 
     @Override
@@ -29,6 +26,11 @@ public class CustomerRepoFile implements ICustomerRepo {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return null;
+    }
+
+    @Override
+    public Admin addAdmin(Admin admin) {
         return null;
     }
 

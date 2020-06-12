@@ -1,9 +1,5 @@
 package com.revature.onlineretailapp.menus;
 
-import com.revature.onlineretailapp.dao.CustomerRepoDB;
-import com.revature.onlineretailapp.dao.CustomerRepoFile;
-import com.revature.onlineretailapp.service.CustomerService;
-
 import java.util.Scanner;
 
 public class StartingMenu implements IMenu {
