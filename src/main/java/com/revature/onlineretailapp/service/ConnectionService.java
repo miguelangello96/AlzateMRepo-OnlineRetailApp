@@ -7,7 +7,20 @@ import java.util.Properties;
 
 public class ConnectionService {
 
+    //public Connection connection;
+    private static ConnectionService connectionService_single_instance = null;
     private Connection connection;
+
+    public static ConnectionService getInstance(){
+
+        if(connectionService_single_instance == null) {
+
+            connectionService_single_instance = new ConnectionService();
+        }
+
+        return connectionService_single_instance;
+
+    }
 
     public ConnectionService() {
         try {

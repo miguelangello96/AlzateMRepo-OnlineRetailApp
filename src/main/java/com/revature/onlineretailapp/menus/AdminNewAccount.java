@@ -4,9 +4,11 @@ import com.revature.onlineretailapp.dao.UserRepoDB;
 import com.revature.onlineretailapp.service.ConnectionService;
 import com.revature.onlineretailapp.service.UserService;
 
+import java.sql.SQLException;
+
 public class AdminNewAccount implements IMenu {
 
-    private ConnectionService connectionService = new ConnectionService();
+    private ConnectionService connectionService = new ConnectionService().getInstance();
     private UserService service = new UserService(new UserRepoDB(connectionService));
 
     @Override
@@ -16,8 +18,24 @@ public class AdminNewAccount implements IMenu {
         System.out.println("Enter information to create a new account.");
         System.out.println("");
 
-        service.createNewAdmin();
+        try {
 
+            service.createNewAdmin();
+
+        }catch(Exception e){
+            e.getMessage();
+
+        } finally {
+
+            try {
+
+                connectionService.finalize();
+            }catch(Exception e){
+
+                e.getMessage();
+
+            }
+        }
 
 
     }

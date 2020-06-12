@@ -8,7 +8,9 @@ import java.sql.PreparedStatement;
 public class CredentialVerification {
 
     ValidationService inputValidation = new ValidationService();
-    private ConnectionService connectionService = new ConnectionService();
+    ConnectionService connectionService = new ConnectionService().getInstance();
+
+
 
 
     //No-args Constructor

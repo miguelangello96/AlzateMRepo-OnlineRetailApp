@@ -6,7 +6,7 @@ import com.revature.onlineretailapp.service.UserService;
 
 public class CustomerNewAccount implements IMenu {
 
-    private ConnectionService connectionService = new ConnectionService();
+    private ConnectionService connectionService = new ConnectionService().getInstance();
     private UserService service = new UserService(new UserRepoDB(connectionService));
 
 
@@ -17,7 +17,16 @@ public class CustomerNewAccount implements IMenu {
         System.out.println("Enter your information to create a new account.");
         System.out.println("");
 
-        service.createNewCustomer();
+        try {
+            service.createNewCustomer();
+
+        } catch(Exception e){
+
+            e.getMessage();
+
+        } finally {
+            connectionService.finalize();
+        }
 
     }
 }
