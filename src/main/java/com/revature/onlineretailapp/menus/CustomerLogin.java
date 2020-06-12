@@ -1,37 +1,38 @@
 package com.revature.onlineretailapp.menus;
 import com.revature.onlineretailapp.dao.CustomerRepoDB;
-import com.revature.onlineretailapp.service.CustomerService;
+import com.revature.onlineretailapp.service.*;
 
-import java.util.Scanner;
 
 // Applies for customers with existing accounts
 public class CustomerLogin implements IMenu {
 
-    Scanner scanner = new Scanner(System.in);
-    //CustomerService service = new CustomerService(new CustomerRepoDB());
+    private String emailPrompt = "Enter Email: ";
+    private String passwordPrompt = "Enter Password: ";
+    //Consider putting these in the Customer class
+
+    private String customerEmailStatement = "SELECT * FROM customer WHERE email =";
+    private String customerPasswordStatement = "SELECT * FROM customer WHERE password =";
+    //String adminTableStatement = "SELECT * FROM admin WHERE email =";
+
+    private CredentialVerification customerVerification = new CredentialVerification();
+    private CustomerMenu customerMenu = new CustomerMenu();
 
     @Override
     public void start(){
 
-        String userInput;
+        boolean email;
+        boolean password;
 
-        do{
-            System.out.println("Welcome Back");
+        System.out.println("Welcome Back - Customer Login");
+        System.out.println("");
 
-
-            //you need to be able to access objects that have been created
-            // then you need to see if they match the user input
-
-            // ##############
-            //Once that is succesfull take them to customerMenu
-            // Smae for admin
+        email = customerVerification.loginVerification(emailPrompt, customerEmailStatement);
+        password = customerVerification.loginVerification(passwordPrompt, customerPasswordStatement);
 
 
-
-
-        } while(true); // for now; we might not need to use a do while loop.
-
-
+        //Takes them to Customer Menu if both correct
+        if(email && password)
+            customerMenu.start();
 
     }
 }

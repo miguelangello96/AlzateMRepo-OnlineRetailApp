@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class CustomerNewAccount implements IMenu {
 
     private ConnectionService connectionService = new ConnectionService();
-    CustomerService service = new CustomerService(new CustomerRepoDB(connectionService));
+    private CustomerService service = new CustomerService(new CustomerRepoDB(connectionService));
 
 
     @Override

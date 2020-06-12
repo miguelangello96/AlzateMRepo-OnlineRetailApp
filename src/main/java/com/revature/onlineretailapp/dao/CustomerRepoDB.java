@@ -22,9 +22,6 @@ public class CustomerRepoDB implements ICustomerRepo {
     @Override
     public Customer addCustomer(Customer customer){
 
-        // 1) insert 1 row for first name
-        // 2) insert row for last name
-
         try {
 
             PreparedStatement customerStatement = connectionService.getConnection().prepareStatement("INSERT INTO customer " +
