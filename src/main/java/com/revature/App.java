@@ -17,20 +17,17 @@ public class App {
 
         StartingMenu mainMenu = new StartingMenu();
         mainMenu.start();
+
+        //To DO
         /*
-        Scanner scan = new Scanner(System.in);
-
-        //Created User object with admin userType
-        User masterAdmin = new User("001", "masterAdmin@email.com", "adminPassword", "Admin", true);
-
-        //Created RetailMenuFactory object
-        RetailMenuFactory retailMenu = new RetailMenuFactory();
-        System.out.println(masterAdmin.getUserType());
-
-        IMenu menu = retailMenu.getMenu(masterAdmin.getUserType());
-        menu.start();
-
+            Create Admin functionality
+            Add Items to product table
+            Columns
+                Include
+                name varchar
+                price INT
+                description TEXT
+                admin_id -> is Foreign key, treat like Generated value from customer and admin
          */
-
     }
 }

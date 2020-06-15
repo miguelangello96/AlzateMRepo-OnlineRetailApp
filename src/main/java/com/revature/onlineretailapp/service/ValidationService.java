@@ -39,4 +39,18 @@ public class ValidationService {
         return userInput;
     }
 
+    public double getValidDouble(String prompt) {
+        double userInput = 0;
+        do {
+            System.out.println(prompt);
+            try {
+                userInput = Double.parseDouble(input.nextLine());
+                break;
+            } catch (NumberFormatException ex) {
+                System.out.println("Please input valid double");
+            }
+        } while(invalid);
+        return userInput;
+    }
+
 }

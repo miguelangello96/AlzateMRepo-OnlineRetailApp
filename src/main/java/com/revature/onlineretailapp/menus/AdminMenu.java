@@ -1,5 +1,11 @@
 package com.revature.onlineretailapp.menus;
 
+import com.revature.onlineretailapp.dao.ProductRepoDB;
+import com.revature.onlineretailapp.dao.UserRepoDB;
+import com.revature.onlineretailapp.service.ConnectionService;
+import com.revature.onlineretailapp.service.ProductService;
+import com.revature.onlineretailapp.service.UserService;
+
 import java.util.Scanner;
 
 public class AdminMenu implements IMenu {
@@ -7,11 +13,15 @@ public class AdminMenu implements IMenu {
     private Scanner scanner = new Scanner(System.in);
     private AdminNewAccount adminNewAccount = new AdminNewAccount();
 
+    private ConnectionService connectionService = new ConnectionService().getInstance();
+    private ProductService service = new ProductService(new ProductRepoDB(connectionService));
+
 
     @Override
     public void start(){
 
         String userInput;
+        //String UpdateProduct;
 
         System.out.println("");
 
@@ -20,11 +30,13 @@ public class AdminMenu implements IMenu {
             System.out.println("");
 
             System.out.println("[0] Create Admin Account");
-            System.out.println("[1] Update Inventory (Add/Delete)");
-            System.out.println("[2] Update Promo Codes (Add/Delete");
-            System.out.println("[3] Return to Main Menu");
+            System.out.println("[1] Add new Product to Inventory");
+            System.out.println("[2] Delete Product from Inventory");
+            System.out.println("[3] Update Promo Codes (Add/Delete"); // this one might change
+            System.out.println("[4] Return to Main Menu");
 
             userInput = scanner.nextLine();
+
 
             switch (userInput) {
                 case "0":
@@ -35,19 +47,31 @@ public class AdminMenu implements IMenu {
 
                 case "1":
                     //Update inventory Menu - For ADD list attributes and price
-                                        //  - For Delete Drop row from Table
+                    //  - For Delete Drop row from Table
 
+                    service.createNewProduct();
 
                     break;
                 case "2":
-                    //Update Promos Menu - For ADD list price deduction
-                    //  - For Delete Drop row from Table
 
+                    System.out.println("Current products!");
+                    service.getProducts();
+                    service.deleteProduct();
+
+                    System.out.println("Current products");
+                    service.getProducts();
 
                     break;
 
                 case "3":
+                    //Update Promos Menu - For ADD list price deduction
+                    //  - For Delete Drop row from Table
+                    break;
+
+                case "4":
+
                     System.out.println("Logging Out");
+
                     break;
 
                 default:
@@ -57,6 +81,6 @@ public class AdminMenu implements IMenu {
 
             }
 
-        }while(!userInput.equals("3"));
+        }while(!userInput.equals("4"));
     }
 }

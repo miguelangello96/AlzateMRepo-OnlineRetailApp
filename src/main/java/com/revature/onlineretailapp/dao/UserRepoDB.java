@@ -10,7 +10,7 @@ import java.util.List;
 
 public class UserRepoDB implements IUserRepo {
 
-    private ConnectionService connectionService;
+    ConnectionService connectionService = ConnectionService.getInstance();
 
     public UserRepoDB(ConnectionService connectionService) {
 
@@ -80,6 +80,8 @@ public class UserRepoDB implements IUserRepo {
 
     @Override
     public List<Customer> getAllCustomers() {
+
+
         return null;
     }
 }

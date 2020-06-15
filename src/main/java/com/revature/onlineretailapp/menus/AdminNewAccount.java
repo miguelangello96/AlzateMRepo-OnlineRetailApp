@@ -4,7 +4,6 @@ import com.revature.onlineretailapp.dao.UserRepoDB;
 import com.revature.onlineretailapp.service.ConnectionService;
 import com.revature.onlineretailapp.service.UserService;
 
-import java.sql.SQLException;
 
 public class AdminNewAccount implements IMenu {
 
