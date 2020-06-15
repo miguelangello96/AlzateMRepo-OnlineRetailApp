@@ -11,6 +11,11 @@ public class ConnectionService {
     private static ConnectionService connectionService_single_instance = null;
     private Connection connection;
 
+    public Connection getConnection() {
+
+        return connection;
+    }
+
     public static ConnectionService getInstance(){
 
         if(connectionService_single_instance == null) {
@@ -39,11 +44,7 @@ public class ConnectionService {
 
     }
 
-    public Connection getConnection() {
 
-        return connection;
-
-    }
 
     @Override
     public void finalize() {

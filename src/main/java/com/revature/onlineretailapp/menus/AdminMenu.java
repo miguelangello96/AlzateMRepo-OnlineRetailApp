@@ -1,10 +1,8 @@
 package com.revature.onlineretailapp.menus;
 
-import com.revature.onlineretailapp.dao.ProductRepoDB;
-import com.revature.onlineretailapp.dao.UserRepoDB;
-import com.revature.onlineretailapp.service.ConnectionService;
+import com.revature.onlineretailapp.dao.IProductRepo;
 import com.revature.onlineretailapp.service.ProductService;
-import com.revature.onlineretailapp.service.UserService;
+
 
 import java.util.Scanner;
 
@@ -13,15 +11,26 @@ public class AdminMenu implements IMenu {
     private Scanner scanner = new Scanner(System.in);
     private AdminNewAccount adminNewAccount = new AdminNewAccount();
 
-    private ConnectionService connectionService = new ConnectionService().getInstance();
-    private ProductService service = new ProductService(new ProductRepoDB(connectionService));
+
+    IProductRepo repo;
 
 
     @Override
     public void start(){
 
+        ProductService productService = null;
+
+        try{
+
+            productService = new ProductService(repo);
+
+        }catch(Exception e){
+
+            e.getMessage();
+        }
+
         String userInput;
-        //String UpdateProduct;
+
 
         System.out.println("");
 
@@ -49,17 +58,17 @@ public class AdminMenu implements IMenu {
                     //Update inventory Menu - For ADD list attributes and price
                     //  - For Delete Drop row from Table
 
-                    service.createNewProduct();
+                    productService.createNewProduct();
 
                     break;
                 case "2":
 
                     System.out.println("Current products!");
-                    service.getProducts();
-                    service.deleteProduct();
+                    productService.getProducts();
+                    productService.deleteProduct();
 
                     System.out.println("Current products");
-                    service.getProducts();
+                    productService.getProducts();
 
                     break;
 

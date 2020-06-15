@@ -5,6 +5,7 @@ import com.revature.onlineretailapp.menus.IMenu;
 import com.revature.onlineretailapp.menus.RetailMenuFactory;
 import com.revature.onlineretailapp.menus.StartingMenu;
 import com.revature.onlineretailapp.service.ConnectionService;
+import com.revature.onlineretailapp.service.UserService;
 
 
 import java.util.Scanner;

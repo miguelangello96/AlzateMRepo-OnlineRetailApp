@@ -3,6 +3,7 @@ package com.revature.onlineretailapp.service;
 import com.revature.onlineretailapp.dao.IUserRepo;
 import com.revature.onlineretailapp.models.Admin;
 import com.revature.onlineretailapp.models.Customer;
+import com.revature.onlineretailapp.models.PaymentInfo;
 
 import java.util.List;
 
@@ -78,6 +79,31 @@ public class UserService {
 
 
         }while(!success); //
+
+    }
+
+    //For Customer to add payment information
+    public void inputPaymentInfo(){
+        boolean success = false;
+
+        do{
+
+            String cardNum = inputValidation.getValidStringInput("Enter Card Number: ");
+            String securityCode = inputValidation.getValidStringInput("Enter Security Code: ");
+
+            try{
+
+                PaymentInfo paymentInfo = new PaymentInfo(cardNum, securityCode);
+
+                repo.addPaymentInfo(paymentInfo);
+                success = true;
+
+
+            }catch(Exception e){
+                System.out.println("Failed to add payment information");
+            }
+
+        }while(!success);
 
     }
 

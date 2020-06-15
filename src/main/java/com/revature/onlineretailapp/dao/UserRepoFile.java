@@ -2,6 +2,7 @@ package com.revature.onlineretailapp.dao;
 
 import com.revature.onlineretailapp.models.Admin;
 import com.revature.onlineretailapp.models.Customer;
+import com.revature.onlineretailapp.models.PaymentInfo;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -31,6 +32,11 @@ public class UserRepoFile implements IUserRepo {
 
     @Override
     public Admin addAdmin(Admin admin) {
+        return null;
+    }
+
+    @Override
+    public PaymentInfo addPaymentInfo(PaymentInfo paymentInfo) {
         return null;
     }
 

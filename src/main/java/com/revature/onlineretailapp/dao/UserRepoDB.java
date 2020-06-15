@@ -2,6 +2,7 @@ package com.revature.onlineretailapp.dao;
 
 import com.revature.onlineretailapp.models.Admin;
 import com.revature.onlineretailapp.models.Customer;
+import com.revature.onlineretailapp.models.PaymentInfo;
 import com.revature.onlineretailapp.service.ConnectionService;
 
 import java.sql.PreparedStatement;
@@ -12,9 +13,10 @@ public class UserRepoDB implements IUserRepo {
 
     ConnectionService connectionService = ConnectionService.getInstance();
 
-    public UserRepoDB(ConnectionService connectionService) {
+    //this is to set up the connection
+    public UserRepoDB() {
 
-        this.connectionService = connectionService;
+
     }
 
     @Override
@@ -75,6 +77,29 @@ public class UserRepoDB implements IUserRepo {
 
         }
 
+        return null;
+    }
+
+    @Override
+    public PaymentInfo addPaymentInfo(PaymentInfo paymentInfo) {
+
+        try {
+
+            PreparedStatement paymentInfoStatement
+                    = connectionService.getConnection().prepareStatement("INSERT INTO PaymentInfo (cardNum, securityCode) VALUES (?, ?)");
+
+            paymentInfoStatement.setString(1, paymentInfo.getCardNum());
+            paymentInfoStatement.setString(2, paymentInfo.getSecurityCode());
+
+            paymentInfoStatement.executeUpdate();
+
+            return paymentInfo;
+
+        }catch(SQLException e) {
+            System.out.println("Exception " + e.getMessage());
+            e.printStackTrace();
+
+        }
         return null;
     }
 

@@ -1,13 +1,31 @@
 package com.revature.onlineretailapp.menus;
 
+import com.revature.onlineretailapp.service.UserService;
+import com.revature.onlineretailapp.dao.IUserRepo;
+
 import java.util.Scanner;
 
 public class CustomerMenu implements IMenu {
 
+    IUserRepo repo;
+
     private Scanner scanner = new Scanner(System.in);
+
+
 
     @Override
     public void start(){
+
+        UserService userService = null;
+
+        try{
+
+            userService = new UserService(repo);
+
+        }catch(Exception e){
+
+            e.getMessage();
+        }
 
         String userInput;
 
@@ -32,12 +50,16 @@ public class CustomerMenu implements IMenu {
                     //Also displays promo codes
                     // if no payment info take them there
                     //If yes confirm purchase add promo codes if they want
+                    userService.inputPaymentInfo();
 
                     break;
 
                 case "1":
 
-                    //Go to create payment information similar to create new account - just method in a class
+                    //Here in the sql statement
+                    // SELECT FROM PaymentInfo WHERE customerId matches the customer that is logged in
+
+
 
 
                     break;
