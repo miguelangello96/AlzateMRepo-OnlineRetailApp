@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Customer implements Serializable {
 
+    private int customerID; //This is the generated primary key
     private String firstName;
     private String lastName;
     private String email;
@@ -16,6 +17,14 @@ public class Customer implements Serializable {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+    }
+
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
     }
 
     public String getFirstName() {

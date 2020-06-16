@@ -1,6 +1,7 @@
 package com.revature.onlineretailapp.service;
 
 import com.revature.onlineretailapp.dao.IProductRepo;
+import com.revature.onlineretailapp.dao.ProductRepoDB;
 import com.revature.onlineretailapp.models.Product;
 
 import java.util.ArrayList;
@@ -14,8 +15,21 @@ public class ProductService {
         this.repo = repo;
     }
 
+    ProductRepoDB productRepoDB = null;
+
     public void createNewProduct(){
         boolean success = false;
+
+        try{
+
+            productRepoDB = new ProductRepoDB();
+
+        } catch(Exception e) {
+
+            e.getMessage();
+
+
+        }
 
         do{
             String name = inputValidation.getValidStringInput("Enter name of product: ");
@@ -26,7 +40,7 @@ public class ProductService {
 
                 Product newProduct = new Product(name, price, description);
 
-                repo.addProduct(newProduct);
+                productRepoDB.addProduct(newProduct);
                 success = true;
 
 
@@ -40,8 +54,79 @@ public class ProductService {
 
     }
 
+    public void enterCart(){
+        boolean success = false;
+
+        try{
+
+            productRepoDB = new ProductRepoDB();
+        } catch(Exception e) {
+
+            e.getMessage();
+        }
+
+        do{
+            int customerId = inputValidation.getValidInt("Enter your CustomerID:  ");
+
+            try {
+                //Product productToDelete = new Product(name, price, description);
+
+                productRepoDB.enterCart(customerId);
+                success = true;
+
+            }catch(Exception e) {
+                System.out.println("Failed to purchase product");
+            }
+
+       }while(!success); // for now it will only run once
+    }
+
+    public void addLineItem(){
+        boolean success = false;
+
+        try{
+
+            productRepoDB = new ProductRepoDB();
+        } catch(Exception e) {
+
+            e.getMessage();
+        }
+
+        do{
+            int cartId = inputValidation.getValidInt("Enter cartID:  ");
+            int productId = inputValidation.getValidInt("Enter productID : ");
+            int quantity = inputValidation.getValidInt("Enter the quantity of the product: ");
+
+
+            try {
+                //Product productToDelete = new Product(name, price, description);
+
+                productRepoDB.addLineItem(cartId, productId, quantity);
+                System.out.println("Product added to Cart");
+
+                success = true;
+
+            }catch(Exception e) {
+                System.out.println("Failed to purchase product");
+            }
+
+        }while(!success);
+
+    }
+
     public void deleteProduct(){
         boolean success = false;
+
+        try{
+
+            productRepoDB = new ProductRepoDB();
+
+        } catch(Exception e) {
+
+            e.getMessage();
+
+
+        }
 
         do{
             //String name = inputValidation.getValidStringInput("Enter name of product: ");
@@ -52,7 +137,7 @@ public class ProductService {
 
                 //Product productToDelete = new Product(name, price, description);
 
-                repo.removeProduct(productId);
+                productRepoDB.removeProduct(productId);
                 success = true;
 
 
@@ -66,8 +151,47 @@ public class ProductService {
 
     }
 
+    public void totalOrders(){
+        boolean success = false;
+
+        try{
+
+            productRepoDB = new ProductRepoDB();
+        } catch(Exception e) {
+
+            e.getMessage();
+        }
+
+        do{
+
+            try {
+
+                productRepoDB.totalOrder();
+                System.out.println("Total Order");
+
+                success = true;
+
+            }catch(Exception e) {
+                System.out.println("Failed to purchase product");
+            }
+
+        }while(!success);
+
+    }
+
     public void getProducts() {
-        ArrayList<ArrayList<String>> retrievedProduct = repo.getAllProducts();
+        try{
+
+            productRepoDB = new ProductRepoDB();
+
+        } catch(Exception e) {
+
+            e.getMessage();
+
+
+        }
+
+        ArrayList<ArrayList<String>> retrievedProduct = productRepoDB.getAllProducts();
         for (ArrayList<String> product : retrievedProduct){
             System.out.println(product);
         }

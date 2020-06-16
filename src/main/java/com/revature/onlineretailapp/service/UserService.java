@@ -1,10 +1,13 @@
 package com.revature.onlineretailapp.service;
 
 import com.revature.onlineretailapp.dao.IUserRepo;
+import com.revature.onlineretailapp.dao.ProductRepoDB;
+import com.revature.onlineretailapp.dao.UserRepoDB;
 import com.revature.onlineretailapp.models.Admin;
 import com.revature.onlineretailapp.models.Customer;
 import com.revature.onlineretailapp.models.PaymentInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
@@ -16,8 +19,23 @@ public class UserService {
         this.repo = repo;
     }
 
+    UserRepoDB userRepoDB = null;
+
+
+
+    //maybe make it return customer object
     public void createNewCustomer() {
         boolean success = false;
+
+        try{
+
+            userRepoDB = new UserRepoDB();
+
+        }catch(Exception e){
+
+            e.getMessage();
+        }
+
         do {
 
             String firstName = inputValidation.getValidStringInput("Enter first name: ");
@@ -25,9 +43,17 @@ public class UserService {
             String email = inputValidation.getValidStringInput("Enter email address: ");
             String password = inputValidation.getValidStringInput("Enter a password: ");
 
+            System.out.println("Now Please Input Payment Information");
+            System.out.println("");
+
+            String cardNum = inputValidation.getValidStringInput("Enter Card Number: ");
+            String securityCode = inputValidation.getValidStringInput("Enter Security Code: ");
+
+
             try {
                 //uses constructor to create new customer object
                 Customer newCustomer = new Customer(firstName, lastName, email, password);
+                PaymentInfo paymentInfo = new PaymentInfo(cardNum, securityCode);
 
                 /*Thread addCustomerThread = new Thread(() -> {
                     repo.addCustomer(newCustomer);
@@ -36,8 +62,10 @@ public class UserService {
                 });
                 addCustomerThread.start();
                  */
+
                 //Moved add customer outside of the thread
-                repo.addCustomer(newCustomer);
+                userRepoDB.addCustomer(newCustomer, paymentInfo);
+
                 success = true;
             } catch (Exception e){
                 //For now just have this plain message
@@ -51,6 +79,16 @@ public class UserService {
 
     public void createNewAdmin(){
         boolean success = false;
+
+        try{
+
+            userRepoDB = new UserRepoDB();
+
+        }catch(Exception e){
+
+            e.getMessage();
+        }
+
         do {
 
             String firstName = inputValidation.getValidStringInput("Enter first name: ");
@@ -70,7 +108,7 @@ public class UserService {
                 addCustomerThread.start();
                  */
                 //Moved add customer outside of the thread
-                repo.addAdmin(newAdmin);
+                userRepoDB.addAdmin(newAdmin);
                 success = true;
             } catch (Exception e){
                 //For now just have this plain message
@@ -83,24 +121,31 @@ public class UserService {
     }
 
     //For Customer to add payment information
-    public void inputPaymentInfo(){
+    public void viewPaymentInfo(){
         boolean success = false;
+
+        try{
+
+            userRepoDB = new UserRepoDB();
+
+        }catch(Exception e){
+
+            e.getMessage();
+        }
 
         do{
 
-            String cardNum = inputValidation.getValidStringInput("Enter Card Number: ");
-            String securityCode = inputValidation.getValidStringInput("Enter Security Code: ");
+            int customerId = inputValidation.getValidInt("Enter your CustomerId: ");
 
             try{
 
-                PaymentInfo paymentInfo = new PaymentInfo(cardNum, securityCode);
+                //PaymentInfo paymentInfo = new PaymentInfo(cardNum, securityCode);
 
-                repo.addPaymentInfo(paymentInfo);
+                userRepoDB.viewPaymentInfo(customerId);
                 success = true;
 
-
             }catch(Exception e){
-                System.out.println("Failed to add payment information");
+                System.out.println("Failed to view payment information");
             }
 
         }while(!success);
@@ -109,8 +154,17 @@ public class UserService {
 
     // Consider making this method be in the admin class
     public void getCustomers() {
-        List<Customer> retrievedCustomers = repo.getAllCustomers();
-        for (Customer customer : retrievedCustomers){
+        try{
+
+            userRepoDB = new UserRepoDB();
+
+        }catch(Exception e){
+
+            e.getMessage();
+        }
+
+        ArrayList<ArrayList<String>> retrievedCustomers = userRepoDB.getAllCustomers();
+        for (ArrayList<String> customer : retrievedCustomers){
             System.out.println(customer);
         }
     }

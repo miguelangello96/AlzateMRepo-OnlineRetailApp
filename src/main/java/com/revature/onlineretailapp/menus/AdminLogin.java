@@ -23,8 +23,8 @@ public class AdminLogin implements IMenu{
         System.out.println("Admin Login");
         System.out.println("");
 
-        email = customerVerification.loginVerification(emailPrompt, adminEmailStatement);
-        password = customerVerification.loginVerification(passwordPrompt, adminPasswordStatement);
+        email = customerVerification.emailVerification(emailPrompt, adminEmailStatement);
+        password = customerVerification.passwordVerification(passwordPrompt, adminPasswordStatement);
 
         //Takes them to admin Menu if both correct
         if(email && password)
