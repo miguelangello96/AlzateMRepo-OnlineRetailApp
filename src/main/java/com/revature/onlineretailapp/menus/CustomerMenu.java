@@ -51,9 +51,7 @@ public class CustomerMenu implements IMenu {
             System.out.println("");
             System.out.println("What would you like to do?");
             System.out.println("[0] Look at Items currently in Stock");
-            System.out.println("[1] View Payment Information");
-            System.out.println("[2] View Transaction History");
-            System.out.println("[3] Log Out - Return to Main Menu");
+            System.out.println("[1] Log Out - Return to Main Menu");
 
 
             userInput = scanner.nextLine();
@@ -71,24 +69,13 @@ public class CustomerMenu implements IMenu {
 
                 case "1":
 
-                    userService.viewPaymentInfo();
-
-
-
-                    break;
-                case "2":
-
-                    //Just Display Transaction history if they have it, if not tell them - Service class to display it
-                    //When they have purchased items add them to table with relation to customer id
-                    System.out.println("Transaction History");
-
-                    break;
-                case "3":
-
+                    //userService.viewPaymentInfo();
+                    //System.out.println("Transaction History");
                     System.out.println("Logging Out");
 
-                    break;
 
+
+                    break;
 
                 default:
                     System.out.println("Invalid input please try again!");
@@ -97,7 +84,7 @@ public class CustomerMenu implements IMenu {
             }
 
 
-        } while (!userInput.equals("3")); // for now I will change when I know how many options this will have
+        } while (!userInput.equals("1"));
 
 
     }

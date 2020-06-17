@@ -160,7 +160,6 @@ public class ProductRepoDB implements IProductRepo {
                 //int customer_id = resultSet.getInt("customer_id");
                 //String email = resultSet.getString("email");
 
-
                 double total = resultSet.getDouble("total");
 
                 System.out.println("Total Price: " + total);

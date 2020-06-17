@@ -41,8 +41,7 @@ public class AdminMenu implements IMenu {
             System.out.println("[0] Create Admin Account");
             System.out.println("[1] Add new Product to Inventory");
             System.out.println("[2] Delete Product from Inventory");
-            System.out.println("[3] Update Promo Codes (Add/Delete"); // this one might change
-            System.out.println("[4] Return to Main Menu");
+            System.out.println("[3] Return to Main Menu");
 
             userInput = scanner.nextLine();
 
@@ -57,13 +56,19 @@ public class AdminMenu implements IMenu {
                 case "1":
                     //Update inventory Menu - For ADD list attributes and price
                     //  - For Delete Drop row from Table
+                    System.out.println("Current Products");
 
+                    productService.getProducts();
                     productService.createNewProduct();
+
+                    System.out.println("Current Products");
+                    productService.getProducts();
 
                     break;
                 case "2":
 
                     System.out.println("Current products!");
+
                     productService.getProducts();
                     productService.deleteProduct();
 
@@ -73,15 +78,10 @@ public class AdminMenu implements IMenu {
                     break;
 
                 case "3":
-                    //Update Promos Menu - For ADD list price deduction
-                    //  - For Delete Drop row from Table
-                    break;
-
-                case "4":
-
                     System.out.println("Logging Out");
-
                     break;
+
+
 
                 default:
                     System.out.println("Invalid input please try again!");
@@ -90,6 +90,6 @@ public class AdminMenu implements IMenu {
 
             }
 
-        }while(!userInput.equals("4"));
+        }while(!userInput.equals("3"));
     }
 }

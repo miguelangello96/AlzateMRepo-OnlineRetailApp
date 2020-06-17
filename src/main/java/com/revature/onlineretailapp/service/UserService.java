@@ -8,8 +8,6 @@ import com.revature.onlineretailapp.models.Customer;
 import com.revature.onlineretailapp.models.PaymentInfo;
 
 import java.util.ArrayList;
-import java.util.List;
-
 public class UserService {
 
     ValidationService inputValidation = new ValidationService();
